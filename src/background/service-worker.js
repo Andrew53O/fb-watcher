@@ -64,7 +64,7 @@ async function performScan() {
           settings: settings
         });
         
-        if (response && response.posts) {
+        if (response && response.posts && Array.isArray(response.posts)) {
           await processPosts(response.posts, settings);
         }
       } catch (error) {

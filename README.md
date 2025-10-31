@@ -16,7 +16,7 @@ A Chrome Extension that automatically monitors Facebook Marketplace and Groups f
 
 - **Manifest v3** Chrome Extension
 - **React** + **TailwindCSS** for UI
-- **TensorFlow.js** for semantic matching
+- **Cosine Similarity** for semantic keyword matching
 - **Webpack** for bundling
 - **Chrome APIs**: alarms, storage, notifications, tabs, scripting
 

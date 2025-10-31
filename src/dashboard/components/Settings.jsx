@@ -95,7 +95,7 @@ function Settings({ settings, onSave, onTestNotification }) {
             <input
               type="number"
               value={formData.priceMin}
-              onChange={(e) => handleChange('priceMin', parseFloat(e.target.value))}
+              onChange={(e) => handleChange('priceMin', parseFloat(e.target.value) || 0)}
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -106,7 +106,7 @@ function Settings({ settings, onSave, onTestNotification }) {
             <input
               type="number"
               value={formData.priceMax}
-              onChange={(e) => handleChange('priceMax', parseFloat(e.target.value))}
+              onChange={(e) => handleChange('priceMax', parseFloat(e.target.value) || 0)}
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>

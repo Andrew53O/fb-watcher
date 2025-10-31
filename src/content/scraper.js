@@ -246,10 +246,28 @@ function extractGroupPost(article) {
   }
 }
 
-// Generate ID from link
+// Generate ID from link using a better hashing approach
 function generateIdFromLink(link) {
-  const hash = link.split('').reduce((acc, char) => {
-    return ((acc << 5) - acc) + char.charCodeAt(0);
-  }, 0);
-  return Math.abs(hash).toString();
+  // Use URL parts to create more unique ID
+  try {
+    const url = new URL(link);
+    const pathParts = url.pathname.split('/').filter(Boolean);
+    const params = url.search;
+    
+    // Create ID from pathname and search params
+    const uniquePart = pathParts.join('-') + params;
+    
+    // Simple hash with better distribution
+    let hash = 0;
+    for (let i = 0; i < uniquePart.length; i++) {
+      const char = uniquePart.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32bit integer
+    }
+    
+    return 'fb-' + Math.abs(hash).toString(36);
+  } catch (e) {
+    // Fallback for invalid URLs
+    return 'fb-' + Date.now().toString(36) + Math.random().toString(36).substring(2, 9);
+  }
 }
